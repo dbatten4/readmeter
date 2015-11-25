@@ -3,7 +3,9 @@ readmeSearch.controller('ReadMeSearchController', ['$resource', function($resour
   var self = this;
 
   self.doSearch = function() {
-    self.searchResult = $resource('https://api.github.com/users/' + self.searchTerm + '/repos').get();
+    self.searchResult = $resource('https://api.github.com/users/' + self.searchTerm + '/repos').get(
+      { access_token: gitAccessToken }
+    );
   };
 
 }]);

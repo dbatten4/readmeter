@@ -15,14 +15,20 @@ describe('ReadMeSearchController', function() {
   describe('when searching for a user', function() {
 
     var httpBackend;
+
     beforeEach(inject(function($httpBackend) {
       httpBackend = $httpBackend
       httpBackend
-        .when("GET", "https://api.github.com/users/hello/repos")
+        .expectGET('https://api.github.com/users/hello/repos?access_token=' + gitAccessToken)
         .respond(
         { items: items}
       );
     }));
+
+    afterEach(function() {
+      httpBackend.verifyNoOutstandingExpectation();
+      httpBackend.verifyNoOutstandingRequest();
+    });
 
     var items = [
       {
