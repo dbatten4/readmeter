@@ -2,18 +2,23 @@
 <html lang="en" ng-app="ReadMeSearch">
   <head>
     <meta charset="utf-8">
-    <title>Github user search</title>
+    <title>Have you done your READMEs?</title>
     <link rel="stylesheet" type="text/css" href="public/style.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/readmeSearchController.js></script>
+    <script src="js/readmeSearchController.js"></script>
   </head>
 
   <body ng-controller="ReadMeSearchController as searchCtrl">
+    <a href="#" ng-click="searchCtrl.doSearch()">Search</a>
     <div>
-
+      <ul>
+        <li ng-repeat="repo in searchCtrl.searchResult.items">
+          {{repo.name}}
+        </li>
+      </ul>
     </div>
   </body>
 </html>
