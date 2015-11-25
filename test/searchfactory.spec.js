@@ -11,7 +11,7 @@ describe('factory: RepoSearch', function() {
     }
   ];
 
-  beforeEach(module('ReadMeSearch'));
+  beforeEach(module('ReadMeter'));
 
   beforeEach(inject(function(RepoSearch) {
     search = RepoSearch;

@@ -1,5 +1,5 @@
 describe('ReadMeSearchController', function() {
-  beforeEach(module('ReadMeSearch'));
+  beforeEach(module('ReadMeter'));
 
   var ctrl;
 
