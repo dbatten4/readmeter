@@ -1,18 +1,9 @@
-readmeSearch.controller('ReadMeSearchController', [function() {
+readmeSearch.controller('ReadMeSearchController', ['$resource', function($resource) {
 
   var self = this;
 
   self.doSearch = function() {
-    self.searchResult = {
-      items: [
-        {
-          "name": "Octocat"
-        },
-        {
-          "name": "Boris-Bikes"
-        }
-      ]
-    };
+    self.searchResult = $resource('https://api.github.com/users/' + self.searchTerm + '/repos').get();
   };
 
 }]);

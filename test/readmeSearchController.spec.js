@@ -13,6 +13,17 @@ describe('ReadMeSearchController', function() {
   });
 
   describe('when searching for a user', function() {
+
+    var httpBackend;
+    beforeEach(inject(function($httpBackend) {
+      httpBackend = $httpBackend
+      httpBackend
+        .when("GET", "https://api.github.com/users/hello/repos")
+        .respond(
+        { items: items}
+      );
+    }));
+
     var items = [
       {
         "name": "Octocat"
@@ -25,6 +36,7 @@ describe('ReadMeSearchController', function() {
   it('displays search results', function() {
       ctrl.searchTerm = 'hello';
       ctrl.doSearch();
+      httpBackend.flush();
       expect(ctrl.searchResult.items).toEqual(items);
     });
   });

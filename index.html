@@ -12,6 +12,7 @@
   </head>
 
   <body ng-controller="ReadMeSearchController as searchCtrl">
+    <input type="text" ng-model="searchCtrl.searchTerm">
     <a href="#" ng-click="searchCtrl.doSearch()">Search</a>
     <div>
       <ul>
