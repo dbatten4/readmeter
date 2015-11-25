@@ -1,26 +1,25 @@
-describe('factory: RepoSearch', function() {
+describe('factory: ReadMeSearch', function() {
 
   var search;
 
   var items = [
     {
-      "name": "Octocat"
+      "size": 612,
+      "html_url": "https://github.com/dbatten4/airport-js/blob/master/README.md",
+      "message": null
     },
-    {
-      "name": "Boris-Bikes"
-    }
   ];
 
   beforeEach(module('ReadMeter'));
 
-  beforeEach(inject(function(RepoSearch) {
-    search = RepoSearch;
+  beforeEach(inject(function(ReadMeSearch) {
+    search = ReadMeSearch;
   }));
 
   beforeEach(inject(function($httpBackend) {
     httpBackend = $httpBackend
     httpBackend
-      .when('GET', 'https://api.github.com/users/hello/repos?access_token=' + gitAccessToken)
+      .when('GET', 'https://api.github.com/repos/username/repo/readme?access_token=' + gitAccessToken)
       .respond(
         { items: items }
       );
@@ -31,10 +30,10 @@ describe('factory: RepoSearch', function() {
   });
 
   it('returns search results', function() {
-    search.query('hello')
+    search.query('username', 'repo')
       .then(function(response) {
-        expect(response.data.items).toEqual(items)
-      })
+        expect(response.data.items).toEqual(items);
+      });
     httpBackend.flush();
   });
 

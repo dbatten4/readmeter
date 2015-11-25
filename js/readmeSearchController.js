@@ -1,10 +1,10 @@
-readmeSearch.controller('ReadMeSearchController', ['RepoSearch', function(RepoSearch) {
+readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch', function(RepoSearch, ReadMeSearch) {
 
   var self = this;
   self.gitRepoNames = [];
 
   self.doSearch = function() {
-    RepoSearch.query(self.searchTerm)
+    RepoSearch.query(self.username)
       .then(function(response) {
         self.searchResult = response.data;
         for(var i = 0; i < self.searchResult.length; i++) {

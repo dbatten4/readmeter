@@ -1,1 +1,1 @@
-var readmeSearch = angular.module('ReadMeSearch', ['ngResource']);
+var readmeSearch = angular.module('ReadMeter', ['ngResource']);
