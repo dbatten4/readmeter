@@ -1,4 +1,4 @@
-describe('factory: Search', function() {
+describe('factory: RepoSearch', function() {
 
   var search;
 
@@ -13,8 +13,8 @@ describe('factory: Search', function() {
 
   beforeEach(module('ReadMeSearch'));
 
-  beforeEach(inject(function(Search) {
-    search = Search;
+  beforeEach(inject(function(RepoSearch) {
+    search = RepoSearch;
   }));
 
   beforeEach(inject(function($httpBackend) {

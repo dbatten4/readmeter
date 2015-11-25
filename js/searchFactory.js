@@ -1,4 +1,4 @@
-readmeSearch.factory('Search', ['$http', function($http) {
+readmeSearch.factory('RepoSearch', ['$http', function($http) {
 
   return {
     query: function(searchTerm) {
