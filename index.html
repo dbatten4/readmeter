@@ -10,6 +10,7 @@
     <script src="js/app.js"></script>
     <script src="js/readmeSearchController.js"></script>
     <script src="js/secrets.js"></script>
+    <script src="js/searchFactory.js"></script>
   </head>
 
   <body ng-controller="ReadMeSearchController as searchCtrl">
@@ -17,7 +18,7 @@
     <a href="#" ng-click="searchCtrl.doSearch()">Search</a>
     <div>
       <ul>
-        <li ng-repeat="repo in searchCtrl.searchResult.items">
+        <li ng-repeat="repo in searchCtrl.gitRepoNames">
           {{repo.name}}
         </li>
       </ul>
