@@ -14,12 +14,24 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
           self.gitRepoNames.push(name);
         };
         for(var i = 0; i< self.gitRepoNames.length; i++) {
-          ReadMeSearch.query(self.username, self.gitRepoNames[i])
-            .then(function(response) {
-              var name = response.data["url"].split("/")[5];
-              self.readMes.push(name);
-              self.noReadMes = arr_diff(self.gitRepoNames, self.readMes);
-            });
+          (function(i) {
+            ReadMeSearch.query(self.username, self.gitRepoNames[i])
+              .then(function(response) {
+                self.readMes.push(
+                  {
+                    name: self.gitRepoNames[i],
+                    size: response.data["size"],
+                    url: response.data["html_url"]
+                  }
+                );
+              }).catch(function(e){
+                self.noReadMes.push(
+                  {
+                    name: self.gitRepoNames[i],
+                  }
+                );
+              });
+          })(i);
         };
       });
   };
