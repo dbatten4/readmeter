@@ -17,10 +17,18 @@
   <body ng-controller="ReadMeSearchController as searchCtrl">
     <input type="text" ng-model="searchCtrl.username">
     <a href="#" ng-click="searchCtrl.doSearch()">Search</a>
-    <div>
+    <div ng-hide="searchCtrl.noReadMes.length == 0">
+      Repos without READMEs
       <ul>
         <li ng-repeat="repo in searchCtrl.noReadMes">
-          {{repo}}
+          <a ng-href="https://github.com/{{searchCtrl.username}}/{{repo.name}}">{{repo.name}}</a>
+        </li>
+      </ul>
+      Repos with READMEs
+      <ul>
+        <li ng-repeat="repo in searchCtrl.readMes">
+          <a ng-href={{repo.url}}>{{repo.name}}</a>
+          Size {{repo.size}}kb
         </li>
       </ul>
     </div>
