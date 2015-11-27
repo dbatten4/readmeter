@@ -15,22 +15,33 @@
   </head>
 
   <body ng-controller="ReadMeSearchController as searchCtrl">
-    <input type="text" ng-model="searchCtrl.username">
-    <a href="#" ng-click="searchCtrl.doSearch()">Search</a>
-    <div ng-hide="searchCtrl.noReadMes.length == 0">
-      Repos without READMEs
-      <ul>
-        <li ng-repeat="repo in searchCtrl.noReadMes">
+    <form action="#">
+      <div class="central title_box" ng-hide="searchCtrl.inUse">
+        <span class="title">READMEter</span>
+        <input type="text" ng-model="searchCtrl.username" placeholder="enter your github username">
+        <input type="submit" style="visibility: hidden;"
+        ng-click="searchCtrl.doSearch()">
+      </div>
+    </form>
+    <div ng-show="searchCtrl.inUse" class="central result_box">
+      <div class="result_text">
+        <span class="greeting_text"> Hi, {{searchCtrl.username}}</span>. <span
+          class="result_number" id="repo_number">{{searchCtrl.noReadMes.length}}</span> of your
+        Github repos don't have READMEs. This represents
+        <span class="result_number"
+          id="percentage">{{searchCtrl.readMePercentage}}</span>% of all your repos on GitHub. The
+        largest README is for <span class="result_name"
+          id="largest_name">{{searchCtrl.largestReadMe.name}}</span> at
+        <span class="result_number" id="largest_number"> {{searchCtrl.largestReadMe.size}}</span>kb. The smallest is for
+        <span class="result_name" id="smallest_name">{{searchCtrl.smallestReadMe.name}}</span> at
+        <span class="result_number" id="smallest_number">{{searchCtrl.smallestReadMe.size}}</span>kb. The average size your READMEs is
+        <span class="result_number" id="average_number">{{searchCtrl.averageReadMeSize}}</span>kb.
+      </div>
+      <div class="central repo_container">
+        <div class="repo_box" ng-repeat="repo in searchCtrl.noReadMes">
           <a ng-href="https://github.com/{{searchCtrl.username}}/{{repo.name}}">{{repo.name}}</a>
-        </li>
-      </ul>
-      Repos with READMEs
-      <ul>
-        <li ng-repeat="repo in searchCtrl.readMes">
-          <a ng-href={{repo.url}}>{{repo.name}}</a>
-          Size {{repo.size}}kb
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </body>
 </html>
