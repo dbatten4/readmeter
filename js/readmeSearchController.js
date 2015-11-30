@@ -46,6 +46,16 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
     return namesPromise;
   };
 
+  self.reloadPage = function() {
+    self.gitRepoNames = [];
+    self.readMes = [];
+    self.noReadMes = [];
+    self.largestReadMe = [];
+    self.smallestReadMe = [];
+    self.username = "";
+    self.inUse = false;
+  };
+
   addRepoNames = function(response) {
     self.searchResult = response.data;
     for(var i = 0; i < self.searchResult.length; i++) {
