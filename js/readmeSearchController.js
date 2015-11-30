@@ -20,6 +20,7 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
       namesPromise.then(function(promises) {
         $q.all(promises).finally(function() {
           readMeCalculations();
+          percentageOfReposStateCalculation();
           self.inUse = true;
         });
       });
@@ -68,7 +69,7 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
       {
         name: self.gitRepoNames[i]
       }
-    );
+    )
   };
 
   readMeCalculations = function() {
@@ -116,5 +117,18 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
     };
     self.averageReadMeSize = parseInt(average);
   };
+
+  percentageOfReposStateCalculation = function() {
+    var num = self.readMePercentage;
+    if(num <= 10) {
+      self.percentageOfReposState = 'good_value';
+    } else if(num <= 20) {
+      self.percentageOfReposState = 'ok_value';
+    } else {
+      self.percentageOfReposState = 'bad_value';
+    };
+    return self.percentageOfReposState;
+  };
+
 
 }]);
