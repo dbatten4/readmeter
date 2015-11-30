@@ -16,30 +16,32 @@ a {
   transform: translate(-50%, -50%);
 }
 
-.title {
+.thin_italic {
   font-style: italic;
+  font-weight: 100;
+}
+
+.title {
+  @extend .thin_italic;
   font-size: 350%;
   display: block;
   margin: 0 auto 10px auto;
   width: 66%;
-  font-weight: 100;
 }
 
 .results_title {
-  font-style: italic;
+  @extend .thin_italic;
   float: left;
   padding: 20px;
   font-size: 250%;
-  font-weight: 100;
 }
 
 input[type="text"] {
+  @extend .thin_italic;
   border: none;
   border-bottom: solid 1px;
   font-size: 150%;
   text-align: center;
-  font-style: italic;
-  font-weight: 100;
   width: 400px;
   padding: 5px;
 }
