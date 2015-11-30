@@ -8,23 +8,40 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
   self.largestReadMe = [];
 
   self.doSearch = function() {
-    RepoSearch.query(self.username)
-      .then(function(repoResponse) {
-        gitRepoNameDefer = $q.defer();
-        noReadMesDefer = $q.defer();
-        addRepoNames(repoResponse);
-        for(var i = 0; i< self.gitRepoNames.length; i++) {
-          (function(i) {
-            ReadMeSearch.query(self.username, self.gitRepoNames[i])
-              .then(function(readMeResponse) {
-                addToReposWithReadMes(readMeResponse, i);
-              }).catch(function(e){
-                addToReposWithoutReadMes(repoResponse, i);
-              });
-          })(i);
-         self.inUse = true;
-        };
+    var namesPromise =
+      RepoSearch.query(self.username)
+        .then(function(repoResponse) {
+          addRepoNames(repoResponse);
+          return self.lookupNamesPromises(repoResponse);
+        }).catch(function(error) {
+          console.log('error: ' + error);
+        });
+      namesPromise.then(function(promises) {
+        $q.all(promises).finally(function() {
+          percentageOfReposWithReadMes();
+          self.inUse = true;
+        });
       });
+    return namesPromise;
+  };
+
+  self.lookupNamesPromises = function(repoResponse) {
+    var namesPromise = [];
+    for(var i = 0; i < self.gitRepoNames.length; i++) {
+      (function(i) {
+        var p = (ReadMeSearch.query(self.username, self.gitRepoNames[i])
+                .then(function(readmeResponse) {
+                  addToReposWithReadMes(readmeResponse, i);
+                  return readmeResponse;
+                }).catch(function(e) {
+                  addToReposWithoutReadMes(e, i);
+                  return e;
+                })
+        );
+        namesPromise.push(p);
+      })(i);
+    }
+    return namesPromise;
   };
 
   addRepoNames = function(response) {
