@@ -16,22 +16,32 @@ a {
   transform: translate(-50%, -50%);
 }
 
-.title {
+.thin_italic {
   font-style: italic;
+  font-weight: 100;
+}
+
+.title {
+  @extend .thin_italic;
   font-size: 350%;
   display: block;
   margin: 0 auto 10px auto;
   width: 66%;
-  font-weight: 100;
+}
+
+.results_title {
+  @extend .thin_italic;
+  float: left;
+  padding: 20px;
+  font-size: 250%;
 }
 
 input[type="text"] {
+  @extend .thin_italic;
   border: none;
   border-bottom: solid 1px;
   font-size: 150%;
   text-align: center;
-  font-style: italic;
-  font-weight: 100;
   width: 400px;
   padding: 5px;
 }
@@ -40,19 +50,24 @@ input:focus {
   outline:none;
 }
 
+.result_text {
+  font-weight: 200;
+  font-size: 105%;
+  text-align: justify;
+}
+
 .repo_container {
-  position: relative;
-  margin-top: 75px;
-  display: block;
-  width: 70%;
+  font-size: 110%;
 }
 
 .repo_box {
-  display: block;
+  display: inline-block;
+  padding: 10px;
 }
 
 .result_box {
   width: 35%;
+  min-width: 350px;
 }
 
 .result_number {
