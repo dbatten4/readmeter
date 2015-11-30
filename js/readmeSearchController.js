@@ -6,6 +6,7 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
   self.noReadMes = [];
   self.inUse = false;
   self.largestReadMe = [];
+  self.smallestReadMe = [];
 
   self.doSearch = function() {
     var namesPromise =
@@ -19,6 +20,8 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
       namesPromise.then(function(promises) {
         $q.all(promises).finally(function() {
           percentageOfReposWithReadMes();
+          largestReadMe();
+          smallestReadMe();
           self.inUse = true;
         });
       });
@@ -77,17 +80,27 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
   };
 
   largestReadMe = function() {
-    var array = self.readMes;
-    var res = Math.max.apply(Math,array.map(function(o){return o.size;}));
-    var found = array.reduce(function(a, b) {
-      return (a.res == res && a) || (b.res == res && b)
+    var maxRepo = _.max(self.readMes, function(obj) {
+      return obj.size;
     });
-    self.largestReadMe = [(
+    self.largestReadMe = (
       {
-        name: found,
-        size: res
+        name: maxRepo.name,
+        size: maxRepo.size
       }
-    )];
+    );
+  };
+
+  smallestReadMe = function() {
+    var minRepo = _.min(self.readMes, function(obj) {
+      return obj.size;
+    });
+    self.smallestReadMe = (
+      {
+        name: minRepo.name,
+        size: minRepo.size
+      }
+    );
   };
 
 }]);
