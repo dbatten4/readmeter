@@ -32,9 +32,11 @@
         <span class="result_number"
           id="percentage">{{searchCtrl.readMePercentage}}</span>% of all your repos on GitHub. The
         largest README is for <span class="result_name"
-          id="largest_name">{{searchCtrl.largestReadMe.name}}</span> at
+          id="largest_name"><a
+            ng-href="https://github.com/{{searchCtrl.username}}/{{searchCtrl.largestReadMe.name}}">{{searchCtrl.largestReadMe.name}}</a></span> at
         <span class="result_number" id="largest_number"> {{searchCtrl.largestReadMe.size}}</span>kb. The smallest is for
-        <span class="result_name" id="smallest_name">{{searchCtrl.smallestReadMe.name}}</span> at
+        <span class="result_name" id="smallest_name"><a
+            ng-href="https://github.com/{{searchCtrl.username}}/{{searchCtrl.smallestReadMe.name}}">{{searchCtrl.smallestReadMe.name}}</a></span> at
         <span class="result_number" id="smallest_number">{{searchCtrl.smallestReadMe.size}}</span>kb. The average size your READMEs is
         <span class="result_number" id="average_number">{{searchCtrl.averageReadMeSize}}</span>kb.
       </div>
