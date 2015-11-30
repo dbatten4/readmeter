@@ -55,4 +55,13 @@ input:focus {
 .result_number {
   font-size: 120%; }
 
+.good_value {
+  color: #00b33c; }
+
+.ok_value {
+  color: #ff9900; }
+
+.bad_value {
+  color: #ff0000; }
+
 /*# sourceMappingURL=style.css.map */

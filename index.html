@@ -13,6 +13,7 @@
     <script src="js/repoSearchFactory.js"></script>
     <script src="js/readmeSearchFactory.js"></script>
     <script src="js/underscore.js"></script>
+    <script src="js/appjquery.js"></script>
   </head>
 
   <body ng-controller="ReadMeSearchController as searchCtrl">
@@ -30,10 +31,11 @@
     <div ng-show="searchCtrl.inUse" class="central result_box">
       <div class="result_text">
         <span class="greeting_text"> Hi, {{searchCtrl.username}}</span>. <span
-          class="result_number" id="repo_number">{{searchCtrl.noReadMes.length}}</span> of your
+          class="result_number" id="repo_number"
+          ng-class="searchCtrl.percentageOfReposState">{{searchCtrl.noReadMes.length}}</span> of your
         GitHub repos don't have READMEs. This represents
         <span class="result_number"
-          id="percentage">{{searchCtrl.readMePercentage}}</span>% of all your repos on GitHub. The
+          id="percentage" ng-class="searchCtrl.percentageOfReposState">{{searchCtrl.readMePercentage}}</span>% of all your repos on GitHub. The
         largest README is for <span class="result_name"
           id="largest_name"><a
             ng-href="https://github.com/{{searchCtrl.username}}/{{searchCtrl.largestReadMe.name}}">{{searchCtrl.largestReadMe.name}}</a></span> at

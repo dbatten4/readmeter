@@ -1,5 +1,8 @@
 $font-stack: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
 Helvetica, Arial, 'Lucida Grande', sans-serif;
+$green: #00b33c;
+$orange: #ff9900;
+$red: #ff0000;
 
 body {
   font-family: $font-stack;
@@ -72,4 +75,16 @@ input:focus {
 
 .result_number {
   font-size: 120%;
+}
+
+.good_value {
+  color: $green;
+}
+
+.ok_value {
+  color: $orange;
+}
+
+.bad_value {
+  color: $red;
 }
