@@ -16,6 +16,9 @@
   </head>
 
   <body ng-controller="ReadMeSearchController as searchCtrl">
+    <div ng-show="searchCtrl.inUse" class="results_title">
+      READMEter
+    </div>
     <form action="#">
       <div class="central title_box" ng-hide="searchCtrl.inUse">
         <span class="title">READMEter</span>
@@ -28,7 +31,7 @@
       <div class="result_text">
         <span class="greeting_text"> Hi, {{searchCtrl.username}}</span>. <span
           class="result_number" id="repo_number">{{searchCtrl.noReadMes.length}}</span> of your
-        Github repos don't have READMEs. This represents
+        GitHub repos don't have READMEs. This represents
         <span class="result_number"
           id="percentage">{{searchCtrl.readMePercentage}}</span>% of all your repos on GitHub. The
         largest README is for <span class="result_name"
@@ -37,12 +40,20 @@
         <span class="result_number" id="largest_number"> {{searchCtrl.largestReadMe.size}}</span>kb. The smallest is for
         <span class="result_name" id="smallest_name"><a
             ng-href="https://github.com/{{searchCtrl.username}}/{{searchCtrl.smallestReadMe.name}}">{{searchCtrl.smallestReadMe.name}}</a></span> at
-        <span class="result_number" id="smallest_number">{{searchCtrl.smallestReadMe.size}}</span>kb. The average size your READMEs is
-        <span class="result_number" id="average_number">{{searchCtrl.averageReadMeSize}}</span>kb.
+        <span class="result_number"
+          id="smallest_number">{{searchCtrl.smallestReadMe.size}}</span>kb. The
+        average size of your READMEs is
+        <span class="result_number"
+          id="average_number">{{searchCtrl.averageReadMeSize}}</span>kb. 
+        </br>
+        </br>
+        The following repos don't have READMEs:
       </div>
-      <div class="central repo_container">
+      <div class="repo_container">
         <div class="repo_box" ng-repeat="repo in searchCtrl.noReadMes">
-          <a ng-href="https://github.com/{{searchCtrl.username}}/{{repo.name}}">{{repo.name}}</a>
+         <a
+           ng-href="https://github.com/{{searchCtrl.username}}/{{repo.name}}">{{repo.name}}</a>
+         <div style="float: right; margin-left:20px"> || </div>
         </div>
       </div>
     </div>

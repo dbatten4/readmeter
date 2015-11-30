@@ -18,6 +18,13 @@ a {
   width: 66%;
   font-weight: 100; }
 
+.results_title {
+  font-style: italic;
+  float: left;
+  padding: 20px;
+  font-size: 250%;
+  font-weight: 100; }
+
 input[type="text"] {
   border: none;
   border-bottom: solid 1px;
@@ -31,17 +38,21 @@ input[type="text"] {
 input:focus {
   outline: none; }
 
+.result_text {
+  font-weight: 200;
+  font-size: 105%;
+  text-align: justify; }
+
 .repo_container {
-  position: relative;
-  margin-top: 75px;
-  display: block;
-  width: 70%; }
+  font-size: 110%; }
 
 .repo_box {
-  display: block; }
+  display: inline-block;
+  padding: 10px; }
 
 .result_box {
-  width: 35%; }
+  width: 35%;
+  min-width: 350px; }
 
 .result_number {
   font-size: 120%; }
