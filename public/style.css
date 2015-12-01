@@ -4,58 +4,72 @@ body {
 a {
   text-decoration: none; }
 
-.central {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); }
-
-.thin_italic, .title, .results_title, input[type="text"] {
-  font-style: italic;
-  font-weight: 100; }
-
-.title {
-  font-size: 350%;
-  display: block;
-  margin: 0 auto 10px auto;
-  width: 66%; }
-
-.results_title {
-  float: left;
-  padding: 20px;
-  font-size: 250%; }
-
 input[type="text"] {
   border: none;
   border-bottom: solid 1px;
   font-size: 150%;
   text-align: center;
-  width: 400px;
-  padding: 5px; }
+  min-width: 400px;
+  padding: 5px;
+  margin: auto;
+  width: 100%; }
 
 input:focus {
   outline: none; }
 
+.container {
+  margin: auto;
+  width: 50%;
+  min-width: 350px; }
+
+.central {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%); }
+
+.title_box {
+  margin: auto;
+  width: 70%;
+  margin-top: 45%; }
+
+.thin_italic, input[type="text"], .title {
+  font-style: italic;
+  font-weight: 100; }
+
+.title {
+  font-size: 400%;
+  display: block;
+  margin: auto;
+  width: 65%;
+  padding-bottom: 10px; }
+
 .result_text {
+  text-align: center;
   font-weight: 200;
-  font-size: 105%;
-  text-align: justify; }
+  font-size: 130%;
+  padding: 120px 0; }
+
+#greeting {
+  padding-top: 200px;
+  text-align: center; }
 
 .repo_container {
   font-size: 110%; }
+
+.results_container {
+  opacity: 0; }
 
 .repo_box {
   display: inline-block;
   padding: 10px; }
 
-.result_box {
-  width: 35%;
-  min-width: 350px; }
-
 .result_number {
   font-size: 120%; }
 
 .reload_button {
+  text-align: center;
   margin: 20px auto;
   width: 20%;
   font-size: 120%;

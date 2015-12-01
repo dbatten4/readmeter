@@ -16,61 +16,70 @@
     <script src="js/appjquery.js"></script>
   </head>
 
-  <body ng-controller="ReadMeSearchController as searchCtrl">
-    <div ng-show="searchCtrl.inUse" class="results_title">
-      READMEter
-    </div>
-    <form action="#">
-      <div class="central title_box" ng-hide="searchCtrl.inUse">
-        <span class="title">READMEter</span>
-        <input type="text" ng-model="searchCtrl.username" placeholder="enter your github username">
-        <input type="submit" style="visibility: hidden;"
-        ng-click="searchCtrl.doSearch()">
-      </div>
-    </form>
-    <div ng-show="searchCtrl.inUse" class="central result_box">
-      <div class="result_text">
-        <span class="greeting_text"> Hi, {{searchCtrl.username}}</span>.
-        <span class="result_number" id="repo_number" ng-class="searchCtrl.percentageOfReposState">
-          {{searchCtrl.noReadMes.length}}
-        </span> of your GitHub repos don't have READMEs. This represents
-        <span class="result_number" id="percentage" ng-class="searchCtrl.percentageOfReposState">
-          {{searchCtrl.readMePercentage}}
-        </span>% of all your repos on GitHub.
-        </br>
-        </br>
-        The following repos don't have READMEs:
-        </br>
-      </div>
-      <div class="repo_container">
-        <div class="repo_box" ng-repeat="repo in searchCtrl.noReadMes">
-         <a ng-href="https://github.com/{{searchCtrl.username}}/{{repo.name}}">{{repo.name}}</a>
-         <div style="float: right; margin-left:20px"> || </div>
+  <body ng-controller="ReadMeSearchController as searchCtrl" style="height:2000px">
+    <div class="container">
+      <!-- <div ng-show="searchCtrl.inUse" class="title" id="secondary">
+        READMEter
+      </div> -->
+      <section class="title_container">
+        <div class="title_box">
+          <span class="title" id="primary">READMEter</span>
+          <form action="#">
+            <input type="text" ng-model="searchCtrl.username" placeholder="enter your github username">
+            <input type="submit" style="visibility: hidden;"
+            ng-click="searchCtrl.doSearch()">
+          </form>
         </div>
-      </div>
-      </br>
-      <div class="result_text">
-        The largest README is for 
-        <span class="result_name" id="largest_name">
-          <a ng-href="https://github.com/{{searchCtrl.username}}/{{searchCtrl.largestReadMe.name}}">
-            {{searchCtrl.largestReadMe.name}}
-          </a>
-        </span> at
-        <span class="result_number" id="largest_number">
-          {{searchCtrl.largestReadMe.size}}
-        </span>kb. The smallest is for
-        <span class="result_name" id="smallest_name">
-          <a ng-href="https://github.com/{{searchCtrl.username}}/{{searchCtrl.smallestReadMe.name}}">
-            {{searchCtrl.smallestReadMe.name}}
-          </a>
-        </span> at
-        <span class="result_number" id="smallest_number">
-          {{searchCtrl.smallestReadMe.size}}
-        </span>kb. The average size of your READMEs is
-        <span class="result_number" id="average_number">{{searchCtrl.averageReadMeSize}}</span>kb. 
-      </div>
-      <div class="reload_button">
-        <a href="#" ng-click="searchCtrl.reloadPage()">Next User</a>
+      </section>
+      <div class="results_container" ng-show="searchCtrl.inUse">
+        <section class="result_text" id="greeting">
+          Hi, {{searchCtrl.username}}
+        </section>
+        <section class="result_text" id="numbers">
+          <span class="result_number" id="repo_number" ng-class="searchCtrl.percentageOfReposState">
+            {{searchCtrl.noReadMes.length}}
+          </span> of your GitHub repos don't have READMEs
+        </section>
+        <section class="result_text" id="result_percentage">
+          This represents
+          <span class="result_number" id="percentage" ng-class="searchCtrl.percentageOfReposState">{{searchCtrl.readMePercentage}}</span>% of all your repos on GitHub
+        </section>
+        <section class="result_text" id="repos">
+          The following repos don't have READMEs:
+          </br>
+          </br>
+          <div class="repo_container">
+            <div class="repo_box" ng-repeat="repo in searchCtrl.noReadMes">
+             <a ng-href="https://github.com/{{searchCtrl.username}}/{{repo.name}}">{{repo.name}}</a>
+             <div style="float: right; margin-left:20px"> || </div>
+            </div>
+          </div>
+        </section>
+        <section class="result_text" id="sizes">
+          The largest README is for 
+          <span class="result_name" id="largest_name">
+            <a ng-href="https://github.com/{{searchCtrl.username}}/{{searchCtrl.largestReadMe.name}}">
+              {{searchCtrl.largestReadMe.name}}
+            </a>
+          </span> at
+          <span class="result_number" id="largest_number">
+            {{searchCtrl.largestReadMe.size}}
+          </span>kb. The smallest is for
+          <span class="result_name" id="smallest_name">
+            <a ng-href="https://github.com/{{searchCtrl.username}}/{{searchCtrl.smallestReadMe.name}}">
+              {{searchCtrl.smallestReadMe.name}}
+            </a>
+          </span> at
+          <span class="result_number" id="smallest_number">
+            {{searchCtrl.smallestReadMe.size}}
+          </span>kb. The average size of your READMEs is
+          <span class="result_number" id="average_number">{{searchCtrl.averageReadMeSize}}</span>kb
+        </section>
+        <section class="reload">
+          <div class="reload_button">
+            <a href="#" ng-click="searchCtrl.reloadPage()">Next User</a>
+          </div>
+        </section>
       </div>
     </div>
   </body>
