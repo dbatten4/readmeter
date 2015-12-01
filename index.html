@@ -17,7 +17,8 @@
     <script src="js/appjquery.js"></script>
   </head>
 
-  <body ng-controller="ReadMeSearchController as searchCtrl" style="height:2000px">
+  <body ng-controller="ReadMeSearchController as searchCtrl"
+    ng-class="{extended_body:searchCtrl.inUse}">
     <div class="container">
       <!-- <div ng-show="searchCtrl.inUse" class="title" id="secondary">
         READMEter

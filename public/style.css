@@ -31,6 +31,9 @@ input:focus {
   font-style: italic;
   font-weight: 100; }
 
+.extended_body {
+  height: 2000px; }
+
 .title {
   font-size: 400%;
   display: block;
