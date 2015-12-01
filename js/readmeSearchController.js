@@ -1,4 +1,4 @@
-readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch', '$q', function(RepoSearch, ReadMeSearch, $q) {
+readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch', '$q', '$document', function(RepoSearch, ReadMeSearch, $q, $document) {
 
   var self = this;
   self.gitRepoNames = [];
@@ -54,6 +54,8 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
     self.smallestReadMe = [];
     self.username = "";
     self.inUse = false;
+    var titleElement = angular.element(document.getElementById('primary'));
+    $document.scrollToElement(titleElement, 100, 1000);
   };
 
   addRepoNames = function(response) {
