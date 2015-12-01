@@ -51,13 +51,15 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
   };
 
   self.reloadPage = function() {
-    self.gitRepoNames = [];
-    self.readMes = [];
-    self.noReadMes = [];
-    self.largestReadMe = [];
-    self.smallestReadMe = [];
-    self.username = "";
-    self.inUse = false;
+    $timeout(function() {
+      self.gitRepoNames = [];
+      self.readMes = [];
+      self.noReadMes = [];
+      self.largestReadMe = [];
+      self.smallestReadMe = [];
+      self.username = "";
+      self.inUse = false;
+    }, 1000);
     var titleElement = angular.element(document.getElementById('primary'));
     $document.scrollToElement(titleElement, 100, 1000);
   };

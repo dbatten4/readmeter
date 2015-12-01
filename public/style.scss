@@ -45,6 +45,10 @@ input:focus {
   font-weight: 100;
 }
 
+.extended_body {
+  height: 2000px;
+}
+
 .title {
   @extend .thin_italic;
   font-size: 400%;
