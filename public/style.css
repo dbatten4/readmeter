@@ -12,7 +12,7 @@ input[type="text"] {
   min-width: 400px;
   padding: 5px;
   margin: auto;
-  width: 100%; }
+  width: 96.5%; }
 
 input:focus {
   outline: none; }
@@ -21,13 +21,6 @@ input:focus {
   margin: auto;
   width: 50%;
   min-width: 350px; }
-
-.central {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%); }
 
 .title_box {
   margin: auto;
@@ -41,8 +34,7 @@ input:focus {
 .title {
   font-size: 400%;
   display: block;
-  margin: auto;
-  width: 65%;
+  text-align: center;
   padding-bottom: 10px; }
 
 .scroll_instructions {
