@@ -1,4 +1,4 @@
-readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch', '$q', '$document', function(RepoSearch, ReadMeSearch, $q, $document) {
+readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch', '$q', '$document', '$timeout', function(RepoSearch, ReadMeSearch, $q, $document, $timeout) {
 
   var self = this;
   self.gitRepoNames = [];
@@ -21,7 +21,11 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
         $q.all(promises).finally(function() {
           readMeCalculations();
           percentageOfReposStateCalculation();
-          self.inUse = true;
+          self.startFadeOut = true;
+          $timeout(function() {
+            self.inUse = true;
+            self.startFadeIn = true;
+          }, 1000);
         });
       });
     return namesPromise;
