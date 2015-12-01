@@ -15,5 +15,8 @@
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
     "phantomjs": "^1.9.19"
+  },
+  "dependencies": {
+    "http-server": "^0.8.5"
   }
 }
