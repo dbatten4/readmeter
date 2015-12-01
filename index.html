@@ -16,12 +16,13 @@
     <script src="js/appjquery.js"></script>
   </head>
 
-  <body ng-controller="ReadMeSearchController as searchCtrl">
+  <body ng-controller="ReadMeSearchController as searchCtrl"
+    style="height:1000px">
     <div ng-show="searchCtrl.inUse" class="results_title">
       READMEter
     </div>
     <form action="#">
-      <div class="central title_box" ng-hide="searchCtrl.inUse">
+      <div class="central title_box">
         <span class="title">READMEter</span>
         <input type="text" ng-model="searchCtrl.username" placeholder="enter your github username">
         <input type="submit" style="visibility: hidden;"
