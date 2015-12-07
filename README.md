@@ -41,9 +41,9 @@ not forgetting the quotation marks, then save and close the file.
 
 To start the server, run
 ```
-http-server ./
+npm start
 ``` 
-and visit `http://localhost:8080/`
+and visit `http://localhost:3000/`
 
 ## Testing
 
