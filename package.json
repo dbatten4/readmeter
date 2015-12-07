@@ -2,9 +2,10 @@
   "name": "readmes",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "server.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "phantomjs": "^1.9.19"
   },
   "dependencies": {
+    "express": "^4.13.3",
     "http-server": "^0.8.5"
   }
 }
