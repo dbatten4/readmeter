@@ -14,8 +14,6 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 require('./app/routes.js')(app);
 
-var server = app.listen(3000, function() {
-  var host = server.address().address;
-  var port = server.address().port;
+var server = app.listen(process.env.port || 3000, function() {
   console.log('READMEter listening at http:localhost/3000');
 });
