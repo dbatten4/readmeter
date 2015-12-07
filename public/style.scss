@@ -1,5 +1,8 @@
 $font-stack: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
 Helvetica, Arial, 'Lucida Grande', sans-serif;
+$green: #00b33c;
+$orange: #ff9900;
+$red: #ff0000;
 
 body {
   font-family: $font-stack;
@@ -9,52 +12,117 @@ a {
   text-decoration: none;
 }
 
-.central {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.title {
-  font-style: italic;
-  font-size: 350%;
-  display: block;
-  margin: 0 auto 10px auto;
-  width: 66%;
-  font-weight: 100;
-}
-
 input[type="text"] {
+  @extend .thin_italic;
   border: none;
   border-bottom: solid 1px;
   font-size: 150%;
   text-align: center;
-  font-style: italic;
-  font-weight: 100;
-  width: 400px;
+  min-width: 400px;
   padding: 5px;
+  margin: auto;
+  width: 96.5%;
 }
 
 input:focus {
   outline:none;
 }
 
-.repo_container {
-  position: relative;
-  margin-top: 75px;
-  display: block;
+.container {
+  margin: auto;
+  width: 50%;
+  min-width: 350px;
+}
+
+.title_box {
+  margin: auto;
   width: 70%;
+  margin-top: 45%;
+}
+
+.thin_italic {
+  font-style: italic;
+  font-weight: 100;
+}
+
+.extended_body {
+  height: 2000px;
+}
+
+.title {
+  @extend .thin_italic;
+  font-size: 400%;
+  display: block;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.scroll_instructions {
+  margin: 0px;
+  font-size: 110%;
+  text-align: center;
+  opacity: 0;
+}
+
+.result_text {
+  text-align: center;
+  font-weight: 200;
+  font-size: 130%;
+  padding: 120px 0;
+}
+
+#greeting {
+  padding-top: 200px;
+}
+
+.repo_container {
+  font-size: 110%;
+}
+
+.results_container {
+  opacity: 0;
 }
 
 .repo_box {
-  display: block;
-}
-
-.result_box {
-  width: 35%;
+  display: inline-block;
+  padding: 10px;
 }
 
 .result_number {
   font-size: 120%;
+}
+
+.reload_button {
+  text-align: center;
+  margin: 20px auto;
+  width: 20%;
+  font-size: 120%;
+  font-weight: 100;
+}
+
+.fade{
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+}
+
+.fadeIn{
+  @extend .fade;
+  opacity: 1;
+}
+
+.fadeOut{
+  @extend .fade;
+  opacity: 0;
+}
+
+.good_value {
+  color: $green;
+}
+
+.ok_value {
+  color: $orange;
+}
+
+.bad_value {
+  color: $red;
 }

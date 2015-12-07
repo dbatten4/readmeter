@@ -1,4 +1,4 @@
-readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch', '$q', function(RepoSearch, ReadMeSearch, $q) {
+readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch', '$q', '$document', '$timeout', function(RepoSearch, ReadMeSearch, $q, $document, $timeout) {
 
   var self = this;
   self.gitRepoNames = [];
@@ -6,6 +6,7 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
   self.noReadMes = [];
   self.inUse = false;
   self.largestReadMe = [];
+  self.smallestReadMe = [];
 
   self.doSearch = function() {
     var namesPromise =
@@ -18,8 +19,13 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
         });
       namesPromise.then(function(promises) {
         $q.all(promises).finally(function() {
-          percentageOfReposWithReadMes();
-          self.inUse = true;
+          readMeCalculations();
+          percentageOfReposStateCalculation();
+          self.startFadeOut = true;
+          $timeout(function() {
+            self.inUse = true;
+            self.startFadeIn = true;
+          }, 1000);
         });
       });
     return namesPromise;
@@ -42,6 +48,20 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
       })(i);
     }
     return namesPromise;
+  };
+
+  self.reloadPage = function() {
+    $timeout(function() {
+      self.gitRepoNames = [];
+      self.readMes = [];
+      self.noReadMes = [];
+      self.largestReadMe = [];
+      self.smallestReadMe = [];
+      self.username = "";
+      self.inUse = false;
+    }, 1000);
+    var titleElement = angular.element(document.getElementById('primary'));
+    $document.scrollToElement(titleElement, 100, 1000);
   };
 
   addRepoNames = function(response) {
@@ -67,7 +87,14 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
       {
         name: self.gitRepoNames[i]
       }
-    );
+    )
+  };
+
+  readMeCalculations = function() {
+    percentageOfReposWithReadMes();
+    largestReadMe();
+    smallestReadMe();
+    averageSizeOfReadMes();
   };
 
   percentageOfReposWithReadMes = function() {
@@ -77,17 +104,49 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
   };
 
   largestReadMe = function() {
-    var array = self.readMes;
-    var res = Math.max.apply(Math,array.map(function(o){return o.size;}));
-    var found = array.reduce(function(a, b) {
-      return (a.res == res && a) || (b.res == res && b)
+    var maxRepo = _.max(self.readMes, function(obj) {
+      return obj.size;
     });
-    self.largestReadMe = [(
+    self.largestReadMe = (
       {
-        name: found,
-        size: res
+        name: maxRepo.name,
+        size: maxRepo.size
       }
-    )];
+    );
   };
+
+  smallestReadMe = function() {
+    var minRepo = _.min(self.readMes, function(obj) {
+      return obj.size;
+    });
+    self.smallestReadMe = (
+      {
+        name: minRepo.name,
+        size: minRepo.size
+      }
+    );
+  };
+
+  averageSizeOfReadMes = function() {
+    var totalNumberOfReadMes = self.readMes.length;
+    var average = 0;
+    for(var i = 0; i < totalNumberOfReadMes; i++) {
+      average += self.readMes[i].size / totalNumberOfReadMes;
+    };
+    self.averageReadMeSize = parseInt(average);
+  };
+
+  percentageOfReposStateCalculation = function() {
+    var num = self.readMePercentage;
+    if(num <= 10) {
+      self.percentageOfReposState = 'good_value';
+    } else if(num <= 20) {
+      self.percentageOfReposState = 'ok_value';
+    } else {
+      self.percentageOfReposState = 'bad_value';
+    };
+    return self.percentageOfReposState;
+  };
+
 
 }]);

@@ -1,1 +1,1 @@
-var readmeSearch = angular.module('ReadMeter', ['ngResource']);
+var readmeSearch = angular.module('ReadMeter', ['ngResource', 'duScroll']);
