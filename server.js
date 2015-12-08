@@ -14,6 +14,6 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 require('./app/routes.js')(app);
 
-var server = app.listen(process.env.port || 3000, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
   console.log('READMEter listening at http:localhost/3000');
 });
