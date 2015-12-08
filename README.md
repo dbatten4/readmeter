@@ -41,7 +41,7 @@ not forgetting the quotation marks, then save and close the file.
 
 To start the server, run
 ```
-npm start
+node server.js
 ``` 
 and visit `http://localhost:3000/`
 
