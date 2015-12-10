@@ -13,7 +13,7 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
       RepoSearch.query(self.username)
         .then(function(repoResponse) {
           addRepoNames(repoResponse);
-          return self.lookupNamesPromises(repoResponse);
+          return self.lookupNamesPromises();
         }).catch(function(error) {
           console.log('error: ' + error);
         });
@@ -31,7 +31,7 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
     return namesPromise;
   };
 
-  self.lookupNamesPromises = function(repoResponse) {
+  self.lookupNamesPromises = function() {
     var namesPromise = [];
     for(var i = 0; i < self.gitRepoNames.length; i++) {
       (function(i) {
@@ -65,19 +65,20 @@ readmeSearch.controller('ReadMeSearchController', ['RepoSearch', 'ReadMeSearch',
   };
 
   addRepoNames = function(response) {
-    self.searchResult = response.data;
-    for(var i = 0; i < self.searchResult.length; i++) {
-      var name = self.searchResult[i]['name']
+    self.repoSearchResult = response.data;
+    for(var i = 0; i < self.repoSearchResult.length; i++) {
+      var name = self.repoSearchResult[i]['name']
       self.gitRepoNames.push(name);
     };
   };
 
   addToReposWithReadMes = function(response, i) {
+    self.readmeSearchResult = response.data;
     self.readMes.push(
       {
         name: self.gitRepoNames[i],
-        size: parseInt(response.data["size"]),
-        url: response.data["html_url"]
+        size: parseInt(self.readmeSearchResult["size"]),
+        url: self.readmeSearchResult["html_url"]
       }
     );
   };
