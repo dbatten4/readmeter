@@ -40,7 +40,7 @@ describe('ReadMeSearchController', function() {
     ];
 
   it('displays search results', function() {
-      ctrl.searchTerm = 'hello';
+      ctrl.username = 'hello';
       ctrl.doSearch();
       httpBackend.flush();
       expect(ctrl.searchResult.items).toEqual(items);
