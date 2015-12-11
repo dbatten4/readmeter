@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var root = __dirname;
 var path = require('path');
+var jade = require('jade');
 //var bodyParser = require('body-parser');
 //var methodOverride = require('method-override');
 
