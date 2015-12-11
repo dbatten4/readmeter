@@ -1,5 +1,7 @@
 # READMEter
 
+Check out the site live [here](http://readmeter.herokuapp.com/)
+
 ## Description
 
 READMEter is a little web app I've been working on that lets a user know which of their GitHub repos don't have READMEs
@@ -51,9 +53,9 @@ The testing framework used is karma. To run the tests, run
 ```
 karma start test/karma.conj.js
 ```
-While the search factories I've created have been tested, the controller has not as I was having trouble injecting 
-the controller into the tests. This is something I'm working on at the moment as well as end to end testing using
-Protractor. 
+While the search factories I've created have been tested, the controller has not yet fully been tested as I was having 
+some issues with mocking the results from the API call. This is something I'm working on at the moment as well as end to 
+end testing using Protractor.
 
 ## Still To Do
 
