@@ -21,13 +21,13 @@ describe('ReadMeSearchController', function() {
       httpBackend
         .expectGET('https://api.github.com/users/hello/repos?access_token=' + gitAccessToken)
         .respond(
-        { items: items}
+          {
       );
     }));
 
     afterEach(function() {
       httpBackend.verifyNoOutstandingExpectation();
-      httpBackend.verifyNoOutstandingRequest();
+      setTimeout(httpBackend.verifyNoOutstandingRequest(), 0);
     });
 
     var items = [
@@ -43,7 +43,16 @@ describe('ReadMeSearchController', function() {
       ctrl.username = 'hello';
       ctrl.doSearch();
       httpBackend.flush();
-      expect(ctrl.repoSearchResult.items).toEqual(items);
+      expect(ctrl.repoSearchResult.data).toEqual(items);
+    });
+
+    it('adds search results to array of repo names', function(done) {
+      ctrl.username = 'hello';
+      ctrl.doSearch().then(function(result) {
+        expect(ctrl.gitRepoNames).toEqual(["Octocat", "Boris-Bikes"]);
+        setTimeout(function() { done() }, 1);
+      });
+      httpBackend.flush();
     });
 
   });
@@ -57,7 +66,7 @@ describe('ReadMeSearchController', function() {
       httpBackend
         .expectGET('https://api.github.com/repos/hello/testrepo/readme?access_token=' + gitAccessToken)
         .respond(
-          { items: items}
+          { data: items}
       );
     }));
 
@@ -79,7 +88,7 @@ describe('ReadMeSearchController', function() {
       ctrl.gitRepoNames = ["testrepo"];
       ctrl.lookupNamesPromises();
       httpBackend.flush();
-      expect(ctrl.readmeSearchResult.items).toEqual(items);
+      expect(ctrl.readmeSearchResult.data).toEqual(items);
     });
 
   });
